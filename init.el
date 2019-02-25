@@ -112,13 +112,16 @@
 (use-package perl6-mode
   :ensure t
   :defer t)
-  
+
+;; refresh package archive
 ;;(package-refresh-contents)
 
-;; ~
+;; ~ don't create backup-file foo.txt~
 (setq make-backup-files nil)
-;; #
+;; # don't create auto-save-file #foo.txt#
 (setq auto-save-default nil)
+;; don't create ~/.emacs.d/auto-save-list/
+(setq auto-save-list-file-prefix nil)
 ;; use spaces over tabs
 (setq-default tab-width 4 indent-tabs-mode nil)
 
