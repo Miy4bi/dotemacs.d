@@ -25,7 +25,7 @@
     ;; tuareg
     tuareg
     ;; jedi-core
-    ;;jedi-core
+    jedi-core
     ;; helm-flychecl
     helm-flycheck
     ;; helm-gtags
@@ -33,10 +33,10 @@
     ;; zoom
     zoom
     ;; perl6
-    ;;perl6-mode
-    ;; use-package
+    perl6-mode
     ;;beacon
     beacon
+    ;; use-package
     use-package
     ))
 
@@ -127,7 +127,7 @@
   :config
   (helm-gtags-mode t))
 
-(use-package
+(use-package zoom
   :config
   (zoom-mode t))
 
