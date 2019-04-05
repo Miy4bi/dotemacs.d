@@ -25,12 +25,18 @@
     ;; tuareg
     tuareg
     ;; jedi-core
-    jedi-core
+    ;;jedi-core
     ;; helm-flychecl
     helm-flycheck
+    ;; helm-gtags
+    helm-gtags
+    ;; zoom
+    zoom
     ;; perl6
-    perl6-mode
+    ;;perl6-mode
     ;; use-package
+    ;;beacon
+    beacon
     use-package
     ))
 
@@ -109,11 +115,23 @@
   (add-hook 'python-mode-hook 'jedi:setup)
   (add-to-list 'company-backends 'company-jedi))
 
-(use-package perl6-mode
-  :ensure t
-  :defer t)
+;;(use-package perl6-mode
+;;  :ensure t
+;;  :defer t)
 
-;; refresh package archive
+(use-package beacon
+  :config
+  (beacon-mode t))
+
+(use-package helm-gtags
+  :config
+  (helm-gtags-mode t))
+
+(use-package
+  :config
+  (zoom-mode t))
+
+;;refresh package archive
 ;;(package-refresh-contents)
 
 ;; ~ don't create backup-file foo.txt~
@@ -149,7 +167,10 @@
  '(custom-enabled-themes (quote (rebecca)))
  '(custom-safe-themes
    (quote
-    ("f633d825e380caaaefca46483f7243ae9a663f6df66c5fad66d4cab91f731c86" default))))
+    ("f633d825e380caaaefca46483f7243ae9a663f6df66c5fad66d4cab91f731c86" default)))
+ '(package-selected-packages
+   (quote
+    (zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
