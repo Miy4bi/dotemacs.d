@@ -32,6 +32,8 @@
     helm-flycheck
     ;; helm-gtags
     helm-gtags
+    ;; symbol-overlay
+    symbol-overlay
     ;; zoom
     zoom
     ;; perl6
@@ -95,7 +97,7 @@
 (use-package company-c-headers
   :config
   (add-hook 'company-backends 'company-c-headers)
-  (add-hook 'company-c-headers-path-system "/usr/include/c++/5.4.0/"))
+  (add-hook 'company-c-headers-path-system "/usr/include/c++/7.3.0/"))
 
 ;; irony-settings
 (use-package irony
@@ -128,6 +130,13 @@
 (use-package helm-gtags
   :config
   (helm-gtags-mode t))
+
+(use-package symbol-overlay
+  :config
+  (global-set-key (kbd "M-i") 'symbol-overlay-put)
+  (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
+  (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward)
+  (global-set-key (kbd "C-g") 'symbol-overlay-remove-all))
 
 (use-package zoom
   :config
