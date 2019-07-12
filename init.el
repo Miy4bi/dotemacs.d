@@ -32,12 +32,14 @@
     helm-flycheck
     ;; helm-gtags
     helm-gtags
+    ;; helm-ls-git
+    helm-ls-git
+    ;; helm-git-grep
+    helm-git-grep
     ;; symbol-overlay
     symbol-overlay
     ;; zoom
     zoom
-    ;; perl6
-    perl6-mode
     ;;beacon
     beacon
     ;; use-package
@@ -58,19 +60,26 @@
 (use-package helm-config
   :config
   (helm-mode t)
-  ;;(setq rtags-display-result-backend 'helm)
-  (setq helm-move-to-line-cycle-in-source t
-        helm-ff-search-library-in-sexp t
-        helm-scroll-amount 8
-        helm-ff-file-name-history-use-recentf t
-        helm-echo-input-in-header-line t)
+  ;; (rtags-display-result-backend 'helm)
+  (helm-move-to-line-cycle-in-source t)
+  (helm-ff-search-library-in-sexp t)
+  (helm-scroll-amount 8)
+  (helm-ff-file-name-history-use-recentf t)
+  (helm-echo-input-in-header-line t)
   :bind
   ("M-x" . 'helm-M-x)
   ("C-x b" . 'helm-mini)
   ("C-x C-f" . 'helm-find-files)
-  ("C-x C-b" . 'helm-buffers-list))
+  ("C-x C-b" . 'helm-buffers-list)
+  ("<tab>" . 'helm-execute-persistent-action)
+  ("C-i" . 'helm-execute-persistent-action)
+  ("C-z" . 'helm-select-action)
+  ("M-y" . 'helm-show-kill-ring)
+  ("C-c m a n" . 'helm-man-woman)
+  ("C-c f" . 'helm-find)
+  ("C-c o" . helm-occur))
 
-;; helm-flycheck-settings 
+;; helm-flycheck-settings
 (use-package helm-flycheck
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
@@ -130,6 +139,15 @@
 (use-package helm-gtags
   :config
   (helm-gtags-mode t))
+
+(use-package helm-ls-git
+  :bind
+  ("C-c l" . 'helm-browse-project)
+  )
+
+(use-package helm-git-grep
+  :bind
+  ("C-c g" . 'helm-git-grep))
 
 (use-package symbol-overlay
   :config
