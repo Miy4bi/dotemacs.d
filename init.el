@@ -78,51 +78,57 @@
 
 ;; helm-flycheck-settings
 (use-package helm-flycheck
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  :hook
+  ('after-init-hook #'global-flycheck-mode))
 
 ;; flycheck-settings
-;;(use-package flycheck
+;; (use-package flycheck
 ;;  :config
 ;;  (add-hook 'flycheck-mode-hook #'global-flycheck-mode))
 
 ;; company-settings
 (use-package company
-  :config
-  (add-hook 'after-init-hook 'global-company-mode)
+  :init
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2)
   (setq company-selection-wrap-around t)
+  :config
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (define-key company-active-map (kbd "C-h") nil))
+  (define-key company-active-map (kbd "C-h") nil)
+  :hook
+  ('after-init-hook 'global-company-mode))
+
+  
 
 ;; company-c-headers
 (use-package company-c-headers
-  :config
-  (add-hook 'company-backends 'company-c-headers)
-  (add-hook 'company-c-headers-path-system "/usr/include/c++/7.3.0/"))
+  :hook
+  ('company-backends 'company-c-headers)
+  ('company-c-headers-path-system "/usr/include/c++/7.3.0/"))
 
 ;; irony-settings
 (use-package irony
-  :config
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+  :hook
+  ('c++-mode-hook 'irony-mode)
+  ('c-mode-hook 'irony-mode)
+  ('irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 ;; tuareg-settings
 (use-package tuareg
-  :config
+  :init
   (setq tuareg-indent-align-with-first-arg t))
 
 ;; jedi-core-settings
 (use-package jedi-core
-  :config
+  :init
   (setq jedi:complete-on-dot t)
   (setq jedi:use-shortcuts t)
-  (add-hook 'python-mode-hook 'jedi:setup)
+  :hook
+  ('python-mode-hook 'jedi:setup)
+  :config
   (add-to-list 'company-backends 'company-jedi))
 
 ;;(use-package perl6-mode
