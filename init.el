@@ -166,8 +166,8 @@
   (zoom-mode t))
 
 (use-package magit
-  :config
-  (define-key global-map (kbd "C-x g") 'magit-status))
+  :bind
+  ("C-x g" . 'magit-status))
 
 ;;refresh package archive
 ;;(package-refresh-contents)
