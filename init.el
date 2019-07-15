@@ -40,8 +40,10 @@
     symbol-overlay
     ;; zoom
     zoom
-    ;;beacon
+    ;; beacon
     beacon
+    ;; magit
+    magit
     ;; use-package
     use-package
     ))
@@ -163,6 +165,10 @@
   :config
   (zoom-mode t))
 
+(use-package magit
+  :config
+  (define-key global-map (kbd "C-x g") 'magit-status))
+
 ;;refresh package archive
 ;;(package-refresh-contents)
 
@@ -202,7 +208,7 @@
     ("f633d825e380caaaefca46483f7243ae9a663f6df66c5fad66d4cab91f731c86" default)))
  '(package-selected-packages
    (quote
-    (company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
+    (magit company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
