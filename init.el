@@ -44,6 +44,10 @@
     beacon
     ;; magit
     magit
+    ;; markdonw-mode
+    markdown-mode
+    ;; rust-mode
+    rust-mode
     ;; use-package
     use-package
     ))
@@ -62,12 +66,6 @@
 (use-package helm-config
   :config
   (helm-mode t)
-  ;; (rtags-display-result-backend 'helm)
-  (helm-move-to-line-cycle-in-source t)
-  (helm-ff-search-library-in-sexp t)
-  (helm-scroll-amount 8)
-  (helm-ff-file-name-history-use-recentf t)
-  (helm-echo-input-in-header-line t)
   :bind
   ("M-x" . 'helm-M-x)
   ("C-x b" . 'helm-mini)
@@ -77,6 +75,7 @@
   ("C-c m a n" . 'helm-man-woman)
   ("C-c f" . 'helm-find)
   ("C-c o" . helm-occur))
+
 
 ;; helm-flycheck-settings
 (use-package helm-flycheck
@@ -169,6 +168,19 @@
   :bind
   ("C-x g" . 'magit-status))
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+(use-package rust-mode
+  :ensure t
+  :config
+  (setq rust-format-on-save t))
+
 ;;refresh package archive
 ;;(package-refresh-contents)
 
@@ -208,7 +220,7 @@
     ("f633d825e380caaaefca46483f7243ae9a663f6df66c5fad66d4cab91f731c86" default)))
  '(package-selected-packages
    (quote
-    (magit company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
+    (rust-mode markdown-mode magit company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
