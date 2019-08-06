@@ -48,6 +48,8 @@
     markdown-mode
     ;; rust-mode
     rust-mode
+    ;; rebecca-theme
+    rebecca-theme
     ;; use-package
     use-package
     ))
