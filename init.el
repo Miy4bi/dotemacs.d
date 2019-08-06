@@ -66,7 +66,10 @@
   ("M-x" . 'helm-M-x)
   ("C-x b" . 'helm-mini)
   ("C-x C-f" . 'helm-find-files)
-  ("C-x C-b" . 'helm-buffers-list))
+  ("C-x C-b" . 'helm-buffers-list)
+  ("M-y" . 'helm-show-kill-ring)
+  ("C-c f" . 'helm-find)
+  ("C-s" . 'helm-occur))
 
 ;; helm-flycheck-settings 
 (use-package helm-flycheck
