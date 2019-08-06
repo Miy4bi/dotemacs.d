@@ -32,6 +32,8 @@
     helm-flycheck
     ;; helm-gtags
     helm-gtags
+    ;; helm-ls-git
+    helm-ls-git
     ;; zoom
     zoom
     ;;beacon
@@ -127,6 +129,10 @@
 (use-package helm-gtags
   :config
   (helm-gtags-mode t))
+
+(use-package helm-ls-git
+  :bind
+  ("C-c l" . 'helm-browse-project))
 
 (use-package zoom
   :config
