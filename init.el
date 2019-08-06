@@ -132,7 +132,7 @@
 
 (use-package helm-ls-git
   :bind
-  ("C-c l" . 'helm-browse-project))
+  ("C-c s" . 'helm-browse-project))
 
 (use-package zoom
   :config
