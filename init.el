@@ -6,42 +6,29 @@
 
 (defvar favorite-packages
   '(
-    ;; helm
     helm
-    ;; flychake
     flycheck
-    ;; flycheck-irony
     flycheck-irony
-    ;; rtags
     rtags
-    ;; irony
     irony
-    ;; company-irony
     company-irony
-    ;; company
     company
-    ;; company-c-headers
     company-c-headers
-    ;; tuareg
     tuareg
-    ;; jedi-core
     jedi-core
-    ;; company-jedi
     company-jedi
-    ;; helm-flychecl
     helm-flycheck
-    ;; helm-gtags
     helm-gtags
-    ;; helm-ls-git
     helm-ls-git
-    ;; zoom
     zoom
-    ;;beacon
     beacon
-    ;; rebecca-theme
     rebecca-theme
-    ;; use-package
     use-package
+    ;; git
+    git-gutter+
+    ;; rust settings
+    rust-mode
+    racer
     ))
 
 ;;
@@ -100,7 +87,8 @@
 (use-package company-c-headers
   :config
   (add-hook 'company-backends 'company-c-headers)
-  (add-hook 'company-c-headers-path-system "/usr/include/c++/5.4.0/"))
+  (add-hook 'company-c-headers-path-system "/usr/include/c++/7.4.0")
+  (add-hook 'company-c-headers-path-system "/usr/include/"))
 
 ;; irony-settings
 (use-package irony
@@ -132,14 +120,39 @@
 
 (use-package helm-ls-git
   :bind
-  ("C-c s" . 'helm-browse-project))
+  ("C-c l" . 'helm-browse-project))
 
 (use-package zoom
   :config
   (zoom-mode t))
 
+(use-package git-gutter+
+  :config
+  (global-git-gutter+-mode)
+  (global-set-key (kbd "C-x g") 'git-gutter+-mode)
+  :bind
+  ("C-x n" . 'git-gutter+-next-hunk)
+  ("C-x p" . 'git-gutter+-previous-hunk)
+  ("C-x v" . 'git-gutter+-show-hunk)
+  ("C-x r" . 'git-gutter+-revert-hunks)
+  ("C-x t" . 'git-gutter+-stage-hunks)
+  ("C-x c" . 'git-gutter+-commit)
+  ("C-x C" . 'git-gutter+-stage-and-commit)
+  ("C-x C-y" . 'git-gutter+-stage-and-commit-whole-buffer)
+  ("C-x U" . 'git-gutter+-unstage-whole-buffer))
+
+(use-package rust-mode
+  :config
+  (setq company-tooltip-align-annotations t))
+
 ;;refresh package archive
 ;;(package-refresh-contents)
+
+;; add path of racer, rustfmt
+(add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
+
+(add-hook 'rust-mode-hook (lambda()
+                            (racer-mode)))
 
 ;; ~ don't create backup-file foo.txt~
 (setq make-backup-files nil)
