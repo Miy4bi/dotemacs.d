@@ -29,6 +29,9 @@
     ;; rust settings
     rust-mode
     racer
+    ;; go settings
+    go-mode
+    company-go
     ))
 
 ;;
@@ -60,7 +63,7 @@
   ("C-c f" . 'helm-find)
   ("C-s" . 'helm-occur))
 
-;; helm-flycheck-settings 
+;; helm-flycheck-settings
 (use-package helm-flycheck
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
@@ -75,6 +78,7 @@
   :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-idle-delay 0)
+  (setq company-echo-delay 0)
   (setq company-minimum-prefix-length 2)
   (setq company-selection-wrap-around t)
   (define-key company-active-map (kbd "M-n") nil)
@@ -107,8 +111,12 @@
   :config
   (setq jedi:complete-on-dot t)
   (setq jedi:use-shortcuts t)
-  (add-hook 'python-mode-hook 'jedi:setup)
+  ;;(add-hook 'python-mode-hook 'jedi:setup)
   (add-to-list 'company-backends 'company-jedi))
+
+(use-package company-go
+  :config
+  (add-to-list 'company-backends 'company-go))
 
 (use-package beacon
   :config
@@ -190,7 +198,7 @@
     ("f633d825e380caaaefca46483f7243ae9a663f6df66c5fad66d4cab91f731c86" default)))
  '(package-selected-packages
    (quote
-    (py-autopep8 company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
+    (go-mode py-autopep8 company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
