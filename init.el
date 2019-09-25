@@ -1,6 +1,5 @@
 (require 'package)
 
-;; add MELPA repo
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
@@ -34,7 +33,6 @@
     company-go
     ))
 
-;;
 (dolist (package favorite-packages)
   (unless (package-installed-p package)
     (package-install package)))
@@ -44,7 +42,6 @@
   (add-to-list 'load-path "<path where use-package is installed>")
   (require 'use-package))
 
-;; helm-settings
 (use-package helm-config
   :config
   (helm-mode t)
@@ -63,17 +60,14 @@
   ("C-c f" . 'helm-find)
   ("C-s" . 'helm-occur))
 
-;; helm-flycheck-settings
 (use-package helm-flycheck
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
-;; flycheck-settings
 ;;(use-package flycheck
 ;;  :config
 ;;  (add-hook 'flycheck-mode-hook #'global-flycheck-mode))
 
-;; company-settings
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode)
@@ -87,14 +81,12 @@
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   (define-key company-active-map (kbd "C-h") nil))
 
-;; company-c-headers
 (use-package company-c-headers
   :config
   (add-hook 'company-backends 'company-c-headers)
   (add-hook 'company-c-headers-path-system "/usr/include/c++/7.4.0")
   (add-hook 'company-c-headers-path-system "/usr/include/"))
 
-;; irony-settings
 (use-package irony
   :config
   (add-hook 'c++-mode-hook 'irony-mode)
@@ -106,12 +98,10 @@
   :config
   (setq tuareg-indent-align-with-first-arg t))
 
-;; jedi-core-settings
 (use-package jedi-core
   :config
   (setq jedi:complete-on-dot t)
   (setq jedi:use-shortcuts t)
-  ;;(add-hook 'python-mode-hook 'jedi:setup)
   (add-to-list 'company-backends 'company-jedi))
 
 (use-package company-go
@@ -135,9 +125,11 @@
   (zoom-mode t))
 
 (use-package git-gutter+
+  :ensure t
   :config
   (global-git-gutter+-mode)
   (global-set-key (kbd "C-x g") 'git-gutter+-mode)
+  (global-set-key (kbd "C-x G") 'global-git-gutter+-mode)
   :bind
   ("C-x n" . 'git-gutter+-next-hunk)
   ("C-x p" . 'git-gutter+-previous-hunk)
@@ -151,16 +143,11 @@
 
 (use-package rust-mode
   :config
-  (setq company-tooltip-align-annotations t))
-
-;;refresh package archive
-;;(package-refresh-contents)
-
-;; add path of racer, rustfmt
-(add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
-
-(add-hook 'rust-mode-hook (lambda()
-                            (racer-mode)))
+  (setq company-tooltip-align-annotations t)
+  ;; add path of racer, rustfmt
+  (add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
+  (add-hook 'rust-mode-hook (lambda()
+                            (racer-mode))))
 
 ;; ~ don't create backup-file foo.txt~
 (setq make-backup-files nil)
