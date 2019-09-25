@@ -38,19 +38,14 @@
     (package-install package)))
 
 ;; use-package-settings
-(eval-when-compile
-  (add-to-list 'load-path "<path where use-package is installed>")
-  (require 'use-package))
+(when (not (package-installed-p 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
+(require 'use-package)
 (use-package helm-config
   :config
   (helm-mode t)
-  ;;(setq rtags-display-result-backend 'helm)
-  (setq helm-move-to-line-cycle-in-source t
-        helm-ff-search-library-in-sexp t
-        helm-scroll-amount 8
-        helm-ff-file-name-history-use-recentf t
-        helm-echo-input-in-header-line t)
   :bind
   ("M-x" . 'helm-M-x)
   ("C-x b" . 'helm-mini)
@@ -93,7 +88,6 @@
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-;; tuareg-settings
 (use-package tuareg
   :config
   (setq tuareg-indent-align-with-first-arg t))
@@ -157,6 +151,10 @@
 (setq auto-save-list-file-prefix nil)
 ;; use spaces over tabs
 (setq-default tab-width 4 indent-tabs-mode nil)
+
+(setq ring-bell-function 'ignore)
+
+(set-default-coding-systems 'utf-8)
 
 (menu-bar-mode -1)
 
