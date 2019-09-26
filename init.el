@@ -25,7 +25,6 @@
     use-package
     ;; git
     git-gutter+
-    magit
     ;; rust settings
     rust-mode
     racer
@@ -119,10 +118,22 @@
   :config
   (zoom-mode t))
 
-(use-package magit
+(use-package git-gutter+
   :ensure t
+  :config
+  (global-git-gutter+-mode)
+  (global-set-key (kbd "C-x g") 'git-gutter+-mode)
+  (global-set-key (kbd "C-x G") 'global-git-gutter+-mode)
   :bind
-  ("C-x g" . 'magit-status))
+  ("C-x n" . 'git-gutter+-next-hunk)
+  ("C-x p" . 'git-guttter+-prev-hunk)
+  ("C-x v" . 'git-gutter+-show-hunk)
+  ("C-x r" . 'git-gutter+-revert-hunk)
+  ("C-x t" . 'git-gutter+-stage-hunks)
+  ("C-x c" . 'git-gutter+-commit)
+  ("C-x C" . 'git-gutter+-stage-and-commit)
+  ("C-x C-y" . 'git-gutter+-stage-and-commit-whole-buffer)
+  ("C-x U" . 'git-gutter+-unstage-whole-buffer))
 
 (use-package rust-mode
   :config
