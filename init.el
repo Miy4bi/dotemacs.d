@@ -112,7 +112,7 @@
 
 (use-package helm-ls-git
   :bind
-  ("C-c l" . 'helm-browse-project))
+  ("C-c C-f" . 'helm-browse-project))
 
 (use-package zoom
   :config
@@ -126,7 +126,7 @@
   (global-set-key (kbd "C-x G") 'global-git-gutter+-mode)
   :bind
   ("C-x n" . 'git-gutter+-next-hunk)
-  ("C-x p" . 'git-guttter+-prev-hunk)
+  ("C-x p" . 'git-gutter+-previous-hunk)
   ("C-x v" . 'git-gutter+-show-hunk)
   ("C-x r" . 'git-gutter+-revert-hunk)
   ("C-x t" . 'git-gutter+-stage-hunks)
