@@ -22,6 +22,7 @@
     zoom
     beacon
     rebecca-theme
+    dashboard
     use-package
     ;; git
     git-gutter+
@@ -143,6 +144,12 @@
   (add-hook 'rust-mode-hook (lambda()
                             (racer-mode))))
 
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+
 ;; ~ don't create backup-file foo.txt~
 (setq make-backup-files nil)
 ;; # don't create auto-save-file #foo.txt#
@@ -166,6 +173,9 @@
 
 (show-paren-mode 1)
 
+(setq inhibit-startup-message t)
+
+(set-scroll-bar-mode 'right)
 
 (put 'upcase-region 'disabled nil)
 (custom-set-variables
