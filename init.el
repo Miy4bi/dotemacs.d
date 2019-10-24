@@ -24,6 +24,7 @@
     rebecca-theme
     dashboard
     use-package
+    ace-window
     ;; git
     git-gutter+
     ;; rust settings
@@ -161,6 +162,14 @@
   :config
   (dashboard-setup-startup-hook))
 
+(use-package ace-window
+  :bind
+  ("C-x o" . 'ace-window)
+  :custom
+  (aw-keys '(?j ?k ?l ?i ?o ?h ?y ?u ?p))
+  :custom-face
+  (aw-leading-char-face ((t (:height 4.0 :foreground "#f1fa8c"))))
+  )
 
 ;; ~ don't create backup-file foo.txt~
 (setq make-backup-files nil)
@@ -205,7 +214,7 @@
     ("f633d825e380caaaefca46483f7243ae9a663f6df66c5fad66d4cab91f731c86" default)))
  '(package-selected-packages
    (quote
-    (go-mode py-autopep8 company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
+    (ace-window go-mode py-autopep8 company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
