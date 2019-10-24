@@ -110,7 +110,18 @@
 
 (use-package helm-gtags
   :config
-  (helm-gtags-mode t))
+  (helm-gtags-mode t)
+  (add-hook 'c-mode-hook 'gtags-mode)
+  (add-hook 'c++-mode-hook 'gtags-mode)
+  (add-hook 'go-mode-hook 'gtags-mode)
+  (add-hook 'rust-mode-hook 'grags-mode)
+  (setq helm-gtags-path-style 'root)
+  (setq helm-gtags-ignore-case nil)
+  :bind
+  ("M-t" . 'helm-gtags-find-tag)
+  ("M-r" . 'helm-gtags-find-rtag)
+  ("M-s" . 'helm-gtags-find-symbol)
+  ("C-t" . 'helm-gtags-pop-stack))
 
 (use-package helm-ls-git
   :bind
