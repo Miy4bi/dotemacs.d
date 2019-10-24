@@ -50,11 +50,12 @@
   :bind
   ("M-x" . 'helm-M-x)
   ("C-x b" . 'helm-mini)
-  ("C-x C-f" . 'helm-find-files)
+  ("C-x C-d" . 'helm-find-files)
   ("C-x C-b" . 'helm-buffers-list)
   ("M-y" . 'helm-show-kill-ring)
-  ("C-c f" . 'helm-find)
-  ("C-s" . 'helm-occur))
+  ("C-c C-f" . 'helm-find)
+  ("C-s" . 'helm-occur)
+  ("C-x C-i" . 'helm-imenu))
 
 (use-package helm-flycheck
   :config
@@ -113,7 +114,7 @@
 
 (use-package helm-ls-git
   :bind
-  ("C-c C-f" . 'helm-browse-project))
+  ("C-x C-f" . 'helm-browse-project))
 
 (use-package zoom
   :config
