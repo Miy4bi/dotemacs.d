@@ -19,7 +19,6 @@
     helm-flycheck
     helm-gtags
     helm-ls-git
-    zoom
     beacon
     rebecca-theme
     dashboard
@@ -128,10 +127,6 @@
 (use-package helm-ls-git
   :bind
   ("C-x C-f" . 'helm-browse-project))
-
-(use-package zoom
-  :config
-  (zoom-mode t))
 
 (use-package git-gutter+
   :ensure t
