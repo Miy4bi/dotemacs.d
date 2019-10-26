@@ -25,6 +25,7 @@
     dashboard
     use-package
     ace-window
+    zoom-window
     ;; git
     git-gutter+
     ;; rust settings
@@ -171,6 +172,10 @@
   (aw-leading-char-face ((t (:height 4.0 :foreground "#f1fa8c"))))
   )
 
+(use-package zoom-window
+  :bind
+  ("C-x C-z" . 'zoom-window-zoom))
+
 ;; ~ don't create backup-file foo.txt~
 (setq make-backup-files nil)
 ;; # don't create auto-save-file #foo.txt#
@@ -208,16 +213,17 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
+ '(aw-keys (quote (106 107 108 105 111 104 121 117 112)))
  '(custom-enabled-themes (quote (rebecca)))
  '(custom-safe-themes
    (quote
     ("f633d825e380caaaefca46483f7243ae9a663f6df66c5fad66d4cab91f731c86" default)))
  '(package-selected-packages
    (quote
-    (ace-window go-mode py-autopep8 company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
+    (zoom-window ace-window go-mode py-autopep8 company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(aw-leading-char-face ((t (:height 4.0 :foreground "#f1fa8c")))))
