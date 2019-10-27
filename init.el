@@ -19,6 +19,7 @@
     helm-flycheck
     helm-gtags
     helm-ls-git
+    helm-descbinds
     beacon
     rebecca-theme
     dashboard
@@ -128,6 +129,10 @@
   :bind
   ("C-x C-f" . 'helm-browse-project))
 
+(use-package helm-descbinds
+  :bind
+  ("C-x ?" . 'helm-descbinds))
+
 (use-package git-gutter+
   :ensure t
   :config
@@ -215,7 +220,7 @@
     ("f633d825e380caaaefca46483f7243ae9a663f6df66c5fad66d4cab91f731c86" default)))
  '(package-selected-packages
    (quote
-    (zoom-window ace-window go-mode py-autopep8 company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
+    (helm-descbinds zoom-window ace-window go-mode py-autopep8 company-jedi zoom helm-gtags beacon rebecca-theme use-package perl6-mode helm-flycheck jedi-core tuareg company-c-headers company-irony rtags flycheck-irony flycheck helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
