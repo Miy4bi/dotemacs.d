@@ -96,18 +96,33 @@
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (exec-path-from-shell-initialize))
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable)
+  :config
+  (setq elpy-rpc-virtualenv-path 'current)
+  (when (load "flycheck" t t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode)))
+
+;; (use-package company-jedi
+;;   :ensure t
+;;   :config
+;;   (setq jedi:complete-on-dot t)
+;;   (setq jedi:use-shortcuts t)
+;;   (add-hook 'python-mode-hook 'jedi:setup)
+;;   (add-to-list 'company-backends 'company-jedi))
+
 (use-package tuareg
   :ensure t
   :config
   (setq tuareg-indent-align-with-first-arg t))
-
-(use-package company-jedi
-  :ensure t
-  :config
-  (setq jedi:complete-on-dot t)
-  (setq jedi:use-shortcuts t)
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (add-to-list 'company-backends 'company-jedi))
 
 (use-package company-go
   :ensure t
@@ -211,7 +226,7 @@
  '(aw-keys (quote (106 107 108 105 111 104 121 117 112)))
  '(package-selected-packages
    (quote
-    (helm-config zoom-window use-package tuareg rtags rebecca-theme racer helm-ls-git helm-gtags helm-flycheck helm-descbinds git-gutter+ flycheck-irony dashboard company-jedi company-irony company-go company-c-headers beacon ace-window))))
+    (elpy helm-config zoom-window use-package tuareg rtags rebecca-theme racer helm-ls-git helm-gtags helm-flycheck helm-descbinds git-gutter+ flycheck-irony dashboard company-jedi company-irony company-go company-c-headers beacon ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
