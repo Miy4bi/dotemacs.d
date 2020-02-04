@@ -27,60 +27,14 @@
   ("C-s" . 'helm-occur)
   ("C-x C-i" . 'helm-imenu))
 
+(use-package helm-company
+  :ensure t
+  )
+
 (use-package helm-flycheck
   :ensure t
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
-
-(use-package company
-  :ensure t
-  :config
-  (add-hook 'after-init-hook 'global-company-mode)
-  (setq company-idle-delay 0)
-  (setq company-echo-delay 0)
-  (setq company-minimum-prefix-length 1)
-  (setq company-selection-wrap-around t)
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (define-key company-active-map (kbd "C-h") nil))
-
-(use-package company-c-headers
-  :ensure t
-  :config
-  (add-hook 'company-backends 'company-c-headers)
-  (add-hook 'company-c-headers-path-system "/usr/include/c++/7.4.0")
-  (add-hook 'company-c-headers-path-system "/usr/include/"))
-
-(use-package irony
-  :ensure t
-  :config
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-
-(use-package tuareg
-  :ensure t
-  :config
-  (setq tuareg-indent-align-with-first-arg t))
-
-(use-package jedi-core
-  :ensure t
-  :config
-  (setq jedi:complete-on-dot t)
-  (setq jedi:use-shortcuts t)
-  (add-to-list 'company-backends 'company-jedi))
-
-(use-package company-go
-  :ensure t
-  :config
-  (add-to-list 'company-backends 'company-go))
-
-(use-package beacon
-  :ensure t
-  :config
-  (beacon-mode t))
 
 (use-package helm-gtags
   :ensure t
@@ -108,6 +62,56 @@
   :bind
   ("C-x ?" . 'helm-descbinds))
 
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-idle-delay 0)
+  (setq company-echo-delay 0)
+  (setq company-minimum-prefix-length 1)
+  (setq company-selection-wrap-around t)
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-active-map (kbd "C-h") nil))
+
+(use-package company-c-headers
+  :ensure t
+  :config
+  (add-hook 'company-backends 'company-c-headers)
+  (add-hook 'company-c-headers-path-system "/usr/include/c++/7.4.0")
+  (add-hook 'company-c-headers-path-system "/usr/include/"))
+
+(use-package irony
+  :ensure t
+  :config
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
+(use-package tuareg
+  :ensure t
+  :config
+  (setq tuareg-indent-align-with-first-arg t))
+
+(use-package company-jedi
+  :ensure t
+  :config
+  (setq jedi:complete-on-dot t)
+  (setq jedi:use-shortcuts t)
+  (add-to-list 'company-backends 'company-jedi))
+
+(use-package company-go
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-go))
+
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode t))
+
 (use-package git-gutter+
   :ensure t
   :config
@@ -130,9 +134,17 @@
   :config
   (setq company-tooltip-align-annotations t)
   ;; add path of racer, rustfmt
-  (add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
-  (add-hook 'rust-mode-hook (lambda()
-                            (racer-mode))))
+  ;;(add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
+  ;;(add-hook 'rust-mode-hook (lambda()
+  ;;                          (racer-mode))))
+  )
+
+(use-package racer
+  :ensure t
+  :config
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  )
 
 (use-package dashboard
   :ensure t
