@@ -20,21 +20,31 @@
   :bind
   ("M-x" . 'helm-M-x)
   ("C-x b" . 'helm-mini)
-  ("C-x C-d" . 'helm-find-files)
+  ("C-x C-f" . 'helm-find-files)
   ("C-x C-b" . 'helm-buffers-list)
   ("M-y" . 'helm-show-kill-ring)
   ("C-c C-f" . 'helm-find)
-  ("C-s" . 'helm-occur)
-  ("C-x C-i" . 'helm-imenu))
+  ("C-x C-o" . 'helm-occur)
+  )
 
 (use-package helm-company
   :ensure t
   )
 
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode)
+  )
+
 (use-package helm-flycheck
   :ensure t
   :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (eval-after-load 'flycheck
+    '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck)))
+
+(use-package helm-swoop
+  :ensure t)
 
 (use-package helm-gtags
   :ensure t
@@ -55,7 +65,7 @@
 (use-package helm-ls-git
   :ensure t
   :bind
-  ("C-x C-f" . 'helm-browse-project))
+  ("C-x C-d" . 'helm-browse-project))
 
 (use-package helm-descbinds
   :ensure t
@@ -218,7 +228,7 @@
  '(aw-keys (quote (106 107 108 105 111 104 121 117 112)))
  '(package-selected-packages
    (quote
-    (elpy helm-config zoom-window use-package tuareg rtags rebecca-theme racer helm-ls-git helm-gtags helm-flycheck helm-descbinds git-gutter+ flycheck-irony dashboard company-jedi company-irony company-go company-c-headers beacon ace-window))))
+    (helm-swoop elpy helm-config zoom-window use-package tuareg rtags rebecca-theme racer helm-ls-git helm-gtags helm-flycheck helm-descbinds git-gutter+ flycheck-irony dashboard company-jedi company-irony company-go company-c-headers beacon ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
