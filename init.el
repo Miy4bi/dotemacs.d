@@ -24,3 +24,5 @@
 (setq inhibit-startup-message t)
 ;; set scroll bar right
 (set-scroll-bar-mode 'right)
+
+(load-theme 'deeper-blue t)
