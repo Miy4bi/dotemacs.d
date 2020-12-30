@@ -26,3 +26,15 @@
 (set-scroll-bar-mode 'right)
 
 (load-theme 'deeper-blue t)
+
+(require 'whitespace)
+(global-whitespace-mode t)
+
+(setq whitespace-style '(face
+                         trailing
+                         empty
+                         space-mark
+                         tab-mark))
+
+;; autocleanup whitespaces
+(setq whitespace-action '(auto-cleanup))
